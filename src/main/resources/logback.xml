@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<configuration scan="true" scanPeriod="10 seconds">
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </layout>
+    </appender>
+
+    <appender name="tweets-appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>tweets.log</file>
+        <encoder>
+            <pattern>%msg%n</pattern>
+        </encoder>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      		<fileNamePattern>tweets.%d{yyyyMMdd}.log</fileNamePattern>
+        </rollingPolicy>
+    </appender>
+
+    <root level="DEBUG">
+        <appender-ref ref="stdout"/>
+    </root>
+    
+    <logger name="tweets-logger" additivity="false" level="INFO">
+	   <appender-ref ref="stdout" />
+	</logger>
+	
+</configuration>
